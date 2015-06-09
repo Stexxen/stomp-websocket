@@ -314,11 +314,11 @@ class Client
             errorCallback?(frame)
           else
             @debug? "Unhandled frame: #{frame}"
-    @ws.onclose   = =>
+    @ws.onclose   = (closeEvent) =>
       msg = "Whoops! Lost connection to #{@ws.url}"
       @debug?(msg)
       @_cleanUp()
-      errorCallback?(msg)
+      errorCallback?(msg, closeEvent)
     @ws.onopen    = =>
       @debug?('Web Socket Opened...')
       headers["accept-version"] = Stomp.VERSIONS.supportedVersions()

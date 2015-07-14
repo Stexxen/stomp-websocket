@@ -523,5 +523,5 @@ if window?
     window.clearInterval id
   window.Stomp = Stomp
 # or in the current object (e.g. a WebWorker)
-else if !exports
+else if typeof exports is 'undefined' 
   self.Stomp = Stomp
